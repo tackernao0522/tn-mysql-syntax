@@ -43,3 +43,31 @@ create database if not exists db04
 + `SCHEMAS`の dababase名の横の`i`マークをクリックするとそのdatabaseの詳細が確認できる<br>
 
 + `use db03;`を実行<br>
+
+## 6. テーブルを作成しよう - create table
+
++ `create database shop;`<br>
+
++ `use shop;`<br>
+
++ 下記を実行<br>
+
+```
+create table 顧客情報
+    (顧客名 text, 家族の人数 int, 入会日 date);
+```
+
++ `show tables;`<br>
+
++ `desc 顧客情報;` or `describe 顧客情報;`<br>
+
++ `show columns from 顧客情報;` これも`desc`と同じ<br>
+
++ `drop table 顧客情報;`<br>
+
++ `if not exsits`を使用すると1回目は作成されるが2回目以降は作成されない(重複防止)<br>
+
+```
+create table if not exists 顧客情報
+    (顧客名 text, 家族の人数 int, 入会日 date);
+```
