@@ -71,3 +71,30 @@ create table 顧客情報
 create table if not exists 顧客情報
     (顧客名 text, 家族の人数 int, 入会日 date);
 ```
+
+## 7. テーブルの構造を変更する - alter table
+
++ `alter table 顧客情報 add column 郵便番号 text;` `column`の部分は省略することができる<br>
+
++ `alter table 顧客情報 add 郵便番号2 text;`<br>
+
++ `alter table 顧客情報 add column カラム1 text first;`<br>
+
++ 下記を実行<br>
+
+```
+alter table 顧客情報
+    add column カラム2 text after 顧客名;
+```
+
++ `alter table 顧客情報 rename column 郵便番号 to 郵便;`<br>
+
++ `alter table 顧客情報 modify column 郵便 int;` 型の変更<br>
+
++ `alter table 顧客情報 modify column 郵便 int first;` 型は必ず記述する<br>
+
++ `alter table 顧客情報 drop column カラム1;`<br>
+
++ `alter table 顧客情報 drop column カラム2;`<br>
+
++ `alter table 顧客情報 drop column 郵便番号2;`<br>
