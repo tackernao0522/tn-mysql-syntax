@@ -98,3 +98,67 @@ alter table 顧客情報
 + `alter table 顧客情報 drop column カラム2;`<br>
 
 + `alter table 顧客情報 drop column 郵便番号2;`<br>
+
+## 8. データを挿入しよう
+
++ `drop tables 顧客情報;`<br>
+
+```
+create table if not exists 顧客情報
+    (顧客名 text, 郵便番号 text, 家族の人数 int, 入会日 text);
+```
+
++ 下記を実行<br>
+
+```
+insert into 顧客情報 values(
+    '山田太郎',
+    '123-4567',
+    2,
+    '2019-01-23'
+);
+```
+
++ `select 顧客名, 郵便番号, 家族の人数, 入会日 from 顧客情報;`<br>
+
+or <br>
+
++ `select * from 顧客情報;`<br>
+
++ `insert into 顧客情報 (顧客名) values ('斎藤一');`<br>
+
++ `insert into 顧客情報 (郵便番号) values ('');` 空文字を入れてみる<br>
+
++ `alter table 顧客情報 modify 顧客名 text not null;` この時点ではエラーになる(既にNULLになっているデータがあるため)<br>
+
++ `truncate 顧客情報;` データを削除する<br>
+
++ `alter table 顧客情報 modify 顧客名 text not null;` <br>
+
++ `insert into 顧客情報 (郵便番号) values ('');` 空文字を入れてみる (NULLを許容しなくなった)<br>
+
++ `insert into 顧客情報 (顧客名) values ('斎藤一');` データが入る<br>
+
+※ date型は文字列として入れる<br>
+
++ 下記を実行 (warningが出る)<br>
+
+```
+insert into 顧客情報 values(
+    '山田太郎',
+    '123-4567',
+    2,
+    '2019/01/23'
+);
+```
+
++ 下記を実行 (warningが出る)<br>
+
+```
+insert into 顧客情報 values(
+    '山田太郎',
+    '123-4567',
+    2,
+    '2019/01/23 01:12:23'
+);
+```
