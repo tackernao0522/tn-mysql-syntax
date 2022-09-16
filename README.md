@@ -162,3 +162,44 @@ insert into 顧客情報 values(
     '2019/01/23 01:12:23'
 );
 ```
+
+## 9. プライマリーキー（主キー）を設定しよう - primary key
+
++ `delete from 顧客情報;` safe modeにより削除できない<br>
+
++ `delete from 顧客情報 where 顧客名='山田太郎';`safe modeにより削除できない<br>
+
++ `alter table 顧客情報 add 顧客番号 int unique key;`<br>
+
++ `truncate 顧客情報;`<br>
+
+```
+insert into 顧客情報 (顧客名, 顧客番号)
+        values('山田太郎', 1);
+```
+
+```
+insert into 顧客情報 (顧客名, 顧客番号)
+        values('佐藤一', 5);
+```
+
+```
+alter table 顧客情報 modify 顧客番号 int primary key;
+```
+
+```
+alter table 顧客情報 modify 顧客番号 int auto_increment;
+```
+
+```
+insert into 顧客情報 (顧客名)
+    values('山本紘一');
+```
+
+```
+create table 商品 (
+    商品ID int primary key auto_increment,
+    商品名 text,
+    価格 int
+);
+```
