@@ -203,3 +203,14 @@ create table 商品 (
     価格 int
 );
 ```
+
+## 10. データの削除と変更をしよう
+
++ `delete from 顧客情報 where 顧客番号=1;`<br>
+
++ `update 顧客情報 set 郵便番号='123-4567';` safe modeによりエラーになる<br>
+
++ `update 顧客情報 set 郵便番号='123-4567' where 顧客番号=5;`<br>
+
++ `update 顧客情報 set 顧客名='佐山昭' where 顧客番号=5;`<br>
+
