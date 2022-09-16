@@ -214,3 +214,25 @@ create table 商品 (
 
 + `update 顧客情報 set 顧客名='佐山昭' where 顧客番号=5;`<br>
 
+## 11. データをインポートしよう
+
++ `create database shop02;`<br>
+
++ `use shop02;`<br>
+
+```
+create table 顧客 (
+    id int primary key auto_increment,
+    姓 varchar(10) not null,
+    名 varchar(10) not null,
+    せい varchar(10) not null,
+    めい varchar(10) not null,
+    生年月日 date
+);
+```
+
++ 左から2番目のヘッダータブをクリック => `sample.sql`を選択 => `Open` <br>
+
++ `稲妻のマークをクリック`する<br>
+
++ `select * from 顧客;`<br>
