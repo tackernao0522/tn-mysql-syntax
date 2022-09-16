@@ -236,3 +236,23 @@ create table 顧客 (
 + `稲妻のマークをクリック`する<br>
 
 + `select * from 顧客;`<br>
+
+## 12 . 操作するデータを特定しよう - where
+
++ `select * from 顧客 where id=465;`<br>
+
++ `select * from 顧客 where 姓="稲富";<br>
+
++ `select * from 顧客 where 姓="上野";<br>
+
++ `select * from 顧客 where 生年月日="2005-07-06"; <br>
+
++ `select * from 顧客 where 生年月日>"2005-01-01"; <br>
+
++ `select * from 顧客 where 生年月日>="2005-01-01"; <br>
+
++ `select * from 顧客 where 生年月日<="2005-01-01"; <br>
+
++ `select * from 顧客 where 生年月日="1963-12-06"; <br>
+
++ `select * from 顧客 where 生年月日<>"1963-12-06"; (not equalのことで等しくないの意) 又は !=を使うが一般的ではない<br>
