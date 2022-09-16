@@ -256,3 +256,17 @@ create table 顧客 (
 + `select * from 顧客 where 生年月日="1963-12-06";` <br>
 
 + `select * from 顧客 where 生年月日<>"1963-12-06";` (not equalのことで等しくないの意) 又は !=を使うが一般的ではない<br>
+
+## 13. 複数の条件を指定しよう - and/or
+
++ `select * from 顧客 where 姓="上野" and 名="孝";`<br>
+
++ `select * from 顧客 where 姓="上野" or 名="孝";`<br>
+
++ `select * from 顧客 where 姓="上野" and not(名="孝");`<br>
+
+ ```
+select * from 顧客
+    where (姓="上野" or 名="孝")
+    and 生年月日="1961-02-13";
+```
