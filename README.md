@@ -270,3 +270,15 @@ select * from 顧客
     where (姓="上野" or 名="孝")
     and 生年月日="1961-02-13";
 ```
+
+## 14. あいまい検索をしよう
+
++ `select * from 顧客 where 姓 like "上%";`<br>
+
++ `select * from 顧客 where 姓 like "%上";`<br>
+
++ `select * from 顧客 where 姓 like "%上%";`<br>
+
++ `select * from 顧客 where 姓 like "%上%" and 名="孝";`<br>
+
++ `select * from 顧客 where 姓 like "%上%" and 名 like "%孝%";`<br>
