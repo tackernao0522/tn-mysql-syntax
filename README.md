@@ -304,3 +304,18 @@ select * from 顧客
 ※ ひらがなとカタカナが混ざっている場合はひらがなの後にカタカナがくる なのでどちらかに統一した方が良い<br>
 
 + `select * from 顧客 order by せい, めい;`<br>
+
+## 16. 件数を制限しよう - limit
+
++ `select * from 顧客;`<br>
+
++ `select * from 顧客 limit 10;`<br>
+
++ `select * from 顧客 limit 20, 10;` id21〜30に絞り込まれる<br>
+
++ workbenchの場合は`Preferences` => `SQL Excution` => `SELECT QUERY Result` => `Limit Rows`で自動的に絞られている。<br>
+
+```
+select * from 顧客 where 姓 like "上%" order by id desc
+    limit 3; ## 順番厳守
+```
