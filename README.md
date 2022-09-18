@@ -282,3 +282,25 @@ select * from 顧客
 + `select * from 顧客 where 姓 like "%上%" and 名="孝";`<br>
 
 + `select * from 顧客 where 姓 like "%上%" and 名 like "%孝%";`<br>
+
+## 15. 並び替えをしよう - order by
+
++ `select * from 顧客;`<br>
+
+※ `asc`の場合は省略可能<br>
+
++ `select * from 顧客 order by id desc;`<br>
+
++ `select * from 顧客 order by id asc;`<br>
+
++ `select * from 顧客 order by 生年月日 asc;`<br>
+
++ `select * from 顧客 order by 生年月日 desc;`<br>
+
++ `select * from 顧客 order by 姓;` この場合バラバラになる(漢字の場合は色々な読み方がある為文字コードの順番で検索している)<br>
+
++ `select * from 顧客 order by せい;` たまたまこの場合のデータは文字コード順に割り振られている為、正常に並び替えられる<br>
+
+※ ひらがなとカタカナが混ざっている場合はひらがなの後にカタカナがくる なのでどちらかに統一した方が良い<br>
+
++ `select * from 顧客 order by せい, めい;`<br>
