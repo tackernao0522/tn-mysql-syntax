@@ -338,3 +338,28 @@ create table 商品 (
 + `workbench`タブの`稲妻のマークをクリック`<br>
 
 + `select * from 商品;`<br>
+
+## 18. カテゴリーを別のテーブルで管理しよう
+
+```
+create table カテゴリー (
+    id int primary key auto_increment,
+    カテゴリー名 varchar(45)
+);
+```
+
++ workbenchの`shop02` => `Tables` => `カテゴリーにマウスカーソルを当てると一番右の表ボタンが出るのでそれをクリック` => `Result Grid` => `Form Editor`をクリック => `カテゴリー名` => `洋服`と入力 => `Apply` => 再度`Apply`<br>
+
++ `select * from カテゴリー;`<br>
+
++ `Form Editor` => `1/2と表示されている横の右矢印をクリック` => `カテゴリー名` => `バッグ`と入力 => `Apply` => 再度`Apply`<br>
+
++ 3件目も同じように `カテゴリー名`に`グッズ`と登録する<br>
+
++ `update 商品 set カテゴリー=1 where カテゴリー="洋服";` safeモードによってエラーが出てしまうのでsafeモードを解除してreconnectして再度このクエリを実行する<br>
+
++ 商品テーブルの`カテゴリー`を`バッグ`を`2`に`グッズ`を`3`に変更する => `Apply`をクリックしておく<br>
+
++ `alter table 商品 modify column カテゴリー int;`<br>
+
++ `describe 商品`又は `desc 商品;` 現在の構成を確認<br>
