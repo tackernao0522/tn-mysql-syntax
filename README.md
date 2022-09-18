@@ -363,3 +363,50 @@ create table カテゴリー (
 + `alter table 商品 modify column カテゴリー int;`<br>
 
 + `describe 商品`又は `desc 商品;` 現在の構成を確認<br>
+
+## 19. 2つのテーブルを接続しよう - inner join
+
+```
+select * from 商品
+    inner join カテゴリー
+    on 商品.カテゴリー = カテゴリー.id;
+```
+
++ `別の書き方`
+
+```
+select * from 商品, カテゴリー where
+    商品.カテゴリー = カテゴリー.id;
+```
+
+```
+select * from 商品
+    inner join カテゴリー
+    on 商品.カテゴリー = カテゴリー.id
+    where カテゴリー.id = 1;
+```
+
++ `別の書き方`
+
+```
+select * from 商品, カテゴリー where
+    商品.カテゴリー = カテゴリー.id and
+    カテゴリー.id = 1;
+```
+
+※ `on 商品.カテゴリー`の `商品`は省略可能(重複しないカラムのテーブルならOK、idの場合はどのテーブルのidなのかわからない為、省略できないことになる)<br>
+
+```
+select * from 商品
+    inner join カテゴリー
+    on カテゴリー = カテゴリー.id
+    where カテゴリー.id = 1;
+```
+
++ `別の書き方`
+
+```
+select * from 商品, カテゴリー where
+    カテゴリー = カテゴリー.id and
+    カテゴリー.id = 1;
+```
