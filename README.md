@@ -443,3 +443,65 @@ select 姓, 名, 商品名, 個数, 購入日時 from 購入履歴, 顧客, 商�
     顧客 = 顧客.id and
     商品 = 商品.id;
 ```
+
+## 21. 関連付かないデータも表示したい - left-join / right-join
+
++ `truncate 購入履歴;`<br>
+
++ `history.sql`をインポートする<br>
+
+```
+select * from 顧客 inner join 購入履歴
+    on 顧客.id = 顧客;
+```
+
+※ `inner join`は両方のテーブルにデータがない場合(null)は出力されない この場合 津島さんがそれである<br>
+
+```
+select * from 顧客 inner join 購入履歴
+    on 顧客.id = 顧客
+    order by 顧客.id;
+```
+
+* データがないもの(null)を出力させたい場合には`外部結合(left join = 左側のテーブルのデータは一旦全て表示しますの意)`を使う<br>
+
+```
+select * from 顧客 left join 購入履歴
+    on 顧客.id = 顧客
+    order by 顧客.id;
+```
+
+※ `right join` = 右側のテーブルのデータが全て表示されることになる<br>
+
+```
+select * from 顧客 right join 購入履歴
+    on 顧客.id = 顧客
+    order by 顧客.id;
+```
+
+```
+select * from 購入履歴 right join 顧客
+    on 顧客.id = 顧客
+    order by 顧客.id;
+```
+
+```
+select * from
+    顧客 left join 購入履歴 on 顧客.id = 顧客
+    inner join 商品 on 商品.id = 商品
+    order by = 顧客.id;
+```
+
+```
+select 姓, 名, 商品名, 個数, 購入日時 from
+	顧客 left join 購入履歴 on 顧客.id = 顧客
+    inner join 商品 on 商品.id = 商品
+    order by 商品.id;
+```
+
+```
+select 姓, 名, 商品名, 個数, 購入日時 from
+	顧客 left join 購入履歴 on 顧客.id = 顧客
+    left join 商品 on 商品.id = 商品
+    order by 商品.id;
+```
