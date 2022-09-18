@@ -410,3 +410,36 @@ select * from 商品, カテゴリー where
     カテゴリー = カテゴリー.id and
     カテゴリー.id = 1;
 ```
+
+## 20. ３つのテーブルを接続しよう
+
+```
+create table 購入履歴 (
+    id int primary key auto_increment,
+    顧客 int,
+    商品 int,
+    個数 int,
+    購入日時 datetime
+);
+```
+
+```
+insert into 購入履歴(顧客, 商品, 個数, 購入日時) values(
+    1,
+    2,
+    2,
+    '2019-10-16 10:23:33'
+);
+```
+
+```
+select * from 購入履歴, 顧客, 商品 where
+    顧客 = 顧客.id and
+    商品 = 商品.id;
+```
+
+```
+select 姓, 名, 商品名, 個数, 購入日時 from 購入履歴, 顧客, 商品 where
+    顧客 = 顧客.id and
+    商品 = 商品.id;
+```
