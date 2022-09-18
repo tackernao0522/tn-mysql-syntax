@@ -319,3 +319,22 @@ select * from 顧客
 select * from 顧客 where 姓 like "上%" order by id desc
     limit 3; ## 順番厳守
 ```
+
+# セクション3: 複数のテーブルを関連付けて利用しよう
+
+## 17. リレーションの学習準備をしよう
+
+```
+create table 商品 (
+    id int primary key auto_increment,
+    カテゴリー varchar(45),
+    商品名 varchar(1000),
+    価格 smallint
+);
+```
+
++ workbrench => `File` => `Open SQL Script` => `items.sql`を選択 => `Open`<br>
+
++ `workbench`タブの`稲妻のマークをクリック`<br>
+
++ `select * from 商品;`<br>
