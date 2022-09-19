@@ -109,3 +109,51 @@ select 商品, 商品名, sum(個数) as 合計
     group by 商品
     order by 合計 desc;
 ```
+
+## 24. 複雑な条件をいつでも使えるようにビューにしよう - view
+
++ view名はテーブル名やカラム名などど重複は不可<br>
+
+```
+create view 商品情報 as
+    select 商品.id as 商品ID, カテゴリー名, 商品名, 価格
+        from 商品 inner join カテゴリー
+        on カテゴリー=カテゴリー.id;
+```
+
++ refresh してみる<br>
+
++ `Views`ができている<br>
+
++ `select * from 商品情報;`<br>
+
+```
+select * from 購入履歴, 商品情報 where
+    商品=商品ID;
+```
+
++ このままだとエラーになる<br>
+
+```
+create view 商品情報 as
+    select 商品.id as 商品ID, カテゴリー.id as カテゴリーID,
+    カテゴリー名, 商品名, 価格
+        from 商品 inner join カテゴリー
+        on カテゴリー=カテゴリー.id;
+```
+
++ 下記にする `create or replace`<br>
+
+```
+create or replace view 商品情報 as
+    select 商品.id as 商品ID, カテゴリー.id as カテゴリーID,
+    カテゴリー名, 商品名, 価格
+        from 商品 inner join カテゴリー
+        on カテゴリー=カテゴリー.id;
+```
+
++ `select * from 商品情報;`<br>
+
++ `desc 商品情報`<br>
+
++ `drop view 商品情報;`<br>
