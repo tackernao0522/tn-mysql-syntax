@@ -209,3 +209,57 @@ select 商品, 商品名, sum(購入金額) from
     on 商品=商品.id) as 購入金額合計
     group by 商品;
 ```
+
+## 26. 複数テーブルの検索結果をまとめて表示しよう - union
+
+```
+create table メルマガ顧客(
+    id int primary key auto_increment,
+    姓 varchar(10),
+    名 varchar(10)
+);
+```
+
++ メルマガ顧客 テーブルに直接データ入力<br>
+
++ `姓` => `メルマガ`, `名` => `太郎`<br>
+
++ `select 姓, 名 from 顧客, メルマガ顧客;` エラーになる(どちらのテーブルのカラムなのか判断がつかない)<br>
+
++ `select 姓, 名 from 顧客;`<br>
+
++ `select 姓, 名 from メルマガ顧客;`<br>
+
++ unionの使用(両方のテーブルのデータを取得できる カラム名が互いに共通していなければならない 片方をidなどを追加することは不可)<br>
+
+```
+select 姓, 名 from 顧客
+union
+select 姓, 名 from メルマガ顧客;
+```
+
++ union + where句<br>
+
+```
+select 姓, 名 from 顧客 where 姓="山田"
+union
+select 姓, 名 from メルマガ顧客;
+```
+
++ メルマガ顧客に `山田` `周`を追加<br>
+
++ メルマガ顧客に入っている`山田 周`はヒットしない(unionは重複を取り除く)<br>
+
+```
+select 姓, 名 from 顧客 where 姓="山田"
+union
+select 姓, 名 from メルマガ顧客;
+```
+
++ 両方表示させたい場合 `union all`<br>
+
+```
+select 姓, 名 from 顧客 where 姓="山田"
+union all
+select 姓, 名 from メルマガ顧客;
+```
