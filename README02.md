@@ -157,3 +157,55 @@ create or replace view 商品情報 as
 + `desc 商品情報`<br>
 
 + `drop view 商品情報;`<br>
+
+## 25. 検索結果の中から、さらに検索をしよう - 副問い合わせ(サブクエリー)
+
++ `select * from 購入履歴;` <br>
+
+```
+select * from 購入履歴 inner join 商品
+    on 商品=商品.id;
+```
+
+```
+select *, 価格*個数 as 購入金額 from 購入履歴
+    inner join 商品
+    on 商品=商品.id;
+```
+
++ 購入金額を集計毎で取りたい場合<br>
+
++ 下記はエラーになる<br>
+
+```
+select *, 価格*個数 as 購入金額, sum(購入金額) from 購入履歴
+    inner join 商品
+    on 商品=商品.id
+    group by 商品;
+```
+
+```
+select 商品, 価格*個数 as 購入金額 from 購入履歴
+    inner join 商品
+    on 商品=商品.id;
+```
+
++ サブクエリーを使う<br>
+
+```
+select 商品, sum(購入金額) from
+    (select 商品, 価格*個数 as 購入金額 from 購入履歴
+    inner join 商品
+    on 商品=商品.id) as 購入金額合計
+    group by 商品;
+```
+
++ 商品名もいれる<br>
+
+```
+select 商品, 商品名, sum(購入金額) from
+    (select 商品, 商品名, 価格*個数 as 購入金額 from 購入履歴
+    inner join 商品
+    on 商品=商品.id) as 購入金額合計
+    group by 商品;
+```
